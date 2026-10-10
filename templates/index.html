@@ -1,1 +1,74 @@
-<h1>Welcome to the Home Page</h1>
+{% extends "layout.html" %}
+
+{% block content %}
+<style>
+    .page-title {
+        color: #191919;
+        margin-bottom: 0.25rem;
+    }
+
+    .page-subtitle {
+        color: #555;
+        margin-bottom: 1.5rem;
+    }
+
+    .flavor-list {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+        gap: 1rem;
+    }
+
+    .flavor-card {
+        border: 0.5px solid #cbcccc;
+        border-radius: 4px;
+        padding: 1rem 1.25rem;
+        background: #fff;
+        box-shadow: 0 1px 3px rgba(0, 0, 0, 0.08);
+        display: flex;
+        flex-direction: column;
+        transition: box-shadow 0.2s, transform 0.2s;
+    }
+
+
+    .flavor-card h2 {
+        margin: 0 0 0.5rem;
+        font-size: 1.15rem;
+    }
+
+    .flavor-card p {
+        flex-grow: 1;
+        margin: 0 0 1rem;
+        color: #444;
+        font-size: 0.95rem;
+    }
+
+    .flavor-card button {
+        align-self: flex-start;
+        padding: 0.5rem 1.1rem;
+        border: none;
+        border-radius: 2px;
+        background: #191919;
+        color: #fff;
+        font-size: 0.9rem;
+        cursor: pointer;
+        transition: background 0.2s;
+    }
+
+    .flavor-card button:hover {
+        background: #111111;
+    }
+</style>
+
+<h1 class="page-title">Install New Flavors of Melody</h1>
+<p class="page-subtitle">Discover and install new flavors of Melody.</p>
+
+<div class="flavor-list">
+    {% for flavor in flavors %}
+        <div class="flavor-card">
+            <h2>{{ flavor.name }}</h2>
+            <p>{{ flavor.description }}</p>
+            <button onclick="installFlavor('{{ flavor.id }}')">Install</button>
+        </div>
+    {% endfor %}
+</div>
+{% endblock %}
